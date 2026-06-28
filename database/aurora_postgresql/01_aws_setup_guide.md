@@ -188,14 +188,49 @@ Enter the password when prompted. You should see the `crm_dev=#` prompt.
 
 ```bash
 # Run each script in sequence
-psql -h <your-endpoint> -p 5432 -U crm_admin -d crm_dev -f 02_extensions_and_roles.sql
-psql -h <your-endpoint> -p 5432 -U crm_admin -d crm_dev -f 03_schema_and_enums.sql
-psql -h <your-endpoint> -p 5432 -U crm_admin -d crm_dev -f 04_core_tables.sql
-psql -h <your-endpoint> -p 5432 -U crm_admin -d crm_dev -f 05_revenue_tables.sql
-psql -h <your-endpoint> -p 5432 -U crm_admin -d crm_dev -f 06_indexes.sql
-psql -h <your-endpoint> -p 5432 -U crm_admin -d crm_dev -f 07_rls_policies.sql
-psql -h <your-endpoint> -p 5432 -U crm_admin -d crm_dev -f 08_audit_triggers.sql
-psql -h <your-endpoint> -p 5432 -U crm_admin -d crm_dev -f 09_seed_data.sql
+# Run 03 first to create the schema
+psql -h crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com \
+  -p 5432 -U crm_admin -d crm_dev \
+  -v ON_ERROR_STOP=1 \
+  -f 03_schema_and_enums.sql
+
+# Then re-run 02 — the schema now exists so the GRANTs will succeed
+psql -h crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com \
+  -p 5432 -U crm_admin -d crm_dev \
+  -v ON_ERROR_STOP=1 \
+  -f 02_extensions_and_roles.sql
+
+
+psql -h crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com \
+  -p 5432 -U crm_admin -d crm_dev \
+  -v ON_ERROR_STOP=1 \
+  -f 04_core_tables.sql
+
+psql -h crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com \
+  -p 5432 -U crm_admin -d crm_dev \
+  -v ON_ERROR_STOP=1 \
+  -f 05_revenue_tables.sql
+
+psql -h crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com \
+  -p 5432 -U crm_admin -d crm_dev \
+  -v ON_ERROR_STOP=1 \
+  -f 06_indexes.sql
+
+psql -h crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com \
+  -p 5432 -U crm_admin -d crm_dev \
+  -v ON_ERROR_STOP=1 \
+  -f 07_rls_policies.sql
+
+psql -h crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com \
+  -p 5432 -U crm_admin -d crm_dev \
+  -v ON_ERROR_STOP=1 \
+  -f 08_audit_triggers.sql
+
+psql -h crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com \
+  -p 5432 -U crm_admin -d crm_dev \
+  -v ON_ERROR_STOP=1 \
+  -f 09_seed_data.sql
+
 ```
 
 ---
