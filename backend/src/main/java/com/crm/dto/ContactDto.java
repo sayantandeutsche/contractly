@@ -1,0 +1,54 @@
+package com.crm.dto;
+import lombok.*;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.util.UUID;
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
+public class ContactDto {
+    private UUID id;
+    private String salutation;
+    private String firstName;
+    private String lastName;
+    private String name;
+    private String title;
+    private String titleType;
+    private String academicTitle;
+    private String departmentPicklist;
+    private String department;
+    private String roleLevel;
+    private String email;
+    private String email2;
+    private String phone;
+    private String mobilePhone;
+    private String homePhone;
+    private Boolean doNotCall;
+    private Boolean hasOptedOutOfEmail;
+    private Boolean unsubscribed;
+    private String linkedin;
+    private String mailingStreet;
+    private String mailingCity;
+    private String mailingState;
+    private String mailingPostalCode;
+    private String mailingCountry;
+    private String mailingCountryCode;
+    private String leadSource;
+    private String contactSource;
+    private String platform;
+    private String productOfInterest;
+    private String subscriptionStatus;
+    private String userStatus;
+    private String licenseType;
+    private Boolean licenseIsActive;
+    private String currencyIsoCode;
+    private Integer activeDaysLast90;
+    private Integer contentViewsLast90;
+    private Boolean wasActiveLast90;
+    private LocalDate lastActiveDate;
+    private UUID accountId;
+    private String accountName;    // joined from account
+    private UUID ownerId;
+    private String description;
+    private Boolean convertedFromLead;
+    private OffsetDateTime createdAt;
+    private OffsetDateTime updatedAt;
+}

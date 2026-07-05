@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: crm-api
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:crm-dev-cluster-instance-1.cf02k0sq0l6x.eu-west-1.rds.amazonaws.com}:${DB_PORT:5432}/${DB_NAME:crm_dev}
+    username: ${DB_USER:crm_admin}
+    password: ${DB_PASSWORD:changeme}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: crm
+        format_sql: true
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Tenant context — set per request via filter
+app:
+  default-tenant-id: ${DEFAULT_TENANT_ID:11111111-0000-0000-0000-000000000001}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000}
