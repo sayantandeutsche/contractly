@@ -51,4 +51,5 @@ public class AccountDto {
     private UUID salesRepresentativeId;
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;
+    private String strategicPotential;
 }

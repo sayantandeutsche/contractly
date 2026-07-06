@@ -64,7 +64,6 @@ public class ContractService {
             .serviceLevel(c.getServiceLevel())
             .originalServiceLevel(c.getOriginalServiceLevel())
             .profitCenter(c.getProfitCenter())
-            .platform(c.getPlatform())
             .clearingHouse(c.getClearingHouse())
             .businessLanguage(c.getBusinessLanguage())
             .annualizedRevenue(c.getAnnualizedRevenue())

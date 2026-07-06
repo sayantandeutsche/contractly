@@ -1,0 +1,10 @@
+/* NewContactWizard — extends NewAccountWizard styles */
+.wiz-checkbox {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--color-text-primary);
+  cursor: pointer; margin-right: 20px; margin-top: 4px;
+}
+.wiz-checkbox input[type="checkbox"] {
+  width: 15px; height: 15px; accent-color: var(--color-primary); cursor: pointer;
+}
+.wiz-field-wide { grid-column: 1 / -1; }

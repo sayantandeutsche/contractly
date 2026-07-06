@@ -1,0 +1,18 @@
+.ph-bar{display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:var(--space-5)}
+.ph-left{display:flex;align-items:baseline;gap:10px}
+.ph-title{font-size:var(--text-xl);font-weight:600;color:var(--color-text-primary)}
+.ph-count{font-size:var(--text-sm);color:var(--color-text-muted);
+  background:var(--n-100);padding:2px 8px;border-radius:99px}
+.ph-actions{display:flex;gap:8px}
+
+.ph-new-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 7px 16px;
+  background: var(--color-primary); color: #fff;
+  border: none; border-radius: var(--r-md);
+  font-size: 13px; font-weight: 500; font-family: inherit;
+  cursor: pointer; transition: background .15s;
+  white-space: nowrap;
+}
+.ph-new-btn:hover { background: var(--color-primary-dark); }
