@@ -44,7 +44,7 @@ jwt:
 
 google:
   # placeholder — replace with your Google Cloud OAuth2 Client ID
-  client-id: ${GOOGLE_CLIENT_ID:REPLACE_WITH_YOUR_GOOGLE_CLIENT_ID}
+  client-id: ${GOOGLE_CLIENT_ID:622926776376-peleqvisbnj2iocekkqa43vg9lsu1fft.apps.googleusercontent.com}
 
 cookie:
   # set COOKIE_SECURE=true once served over https

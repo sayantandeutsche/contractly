@@ -39,7 +39,7 @@ export default function GoogleButton({ onCredential, disabled }) {
     return () => { cancelled = true; };
   }, [clientId, onCredential]);
 
-  const isPlaceholder = !clientId || clientId === 'REPLACE_WITH_YOUR_GOOGLE_CLIENT_ID';
+  const isPlaceholder = !clientId || clientId === '622926776376-peleqvisbnj2iocekkqa43vg9lsu1fft.apps.googleusercontent.com';
 
   if (isPlaceholder) {
     return (
