@@ -1,0 +1,24 @@
+/* Toggle switch for Active field */
+.prod-toggle {
+  display: inline-flex; align-items: center; gap: 10px;
+  cursor: pointer; margin-top: 4px;
+}
+.prod-toggle input[type="checkbox"] { display: none; }
+.prod-toggle-track {
+  position: relative; width: 36px; height: 20px;
+  background: var(--n-300); border-radius: 99px;
+  transition: background .2s; flex-shrink: 0;
+}
+.prod-toggle input:checked + .prod-toggle-track {
+  background: var(--color-primary);
+}
+.prod-toggle-track::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; background: #fff;
+  border-radius: 50%; transition: transform .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.prod-toggle input:checked ~ .prod-toggle-track::after {
+  transform: translateX(16px);
+}
+.prod-toggle-label { font-size: 13px; color: var(--color-text-primary); }
