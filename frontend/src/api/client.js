@@ -6,6 +6,7 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8080/api',
   headers: { 'Content-Type': 'application/json', 'X-Tenant-ID': TENANT_ID },
   timeout: 15000,
+  withCredentials: true, // send/receive the httpOnly auth_token cookie
 });
 
 api.interceptors.response.use(
@@ -36,4 +37,19 @@ export const contractsApi = {
   list:   (params = {}) => api.get('/v1/contracts', { params }),
   detail: (id)          => api.get(`/v1/contracts/${id}`),
 };
+
+export const productsApi = {
+  list:   (params = {}) => api.get('/v1/products', { params }),
+  detail: (id)          => api.get(`/v1/products/${id}`),
+  create: (data)        => api.post('/v1/products', data),
+};
+
+export const authApi = {
+  signup:         (data)    => api.post('/v1/auth/signup', data),
+  login:          (data)    => api.post('/v1/auth/login', data),
+  loginWithGoogle: (idToken) => api.post('/v1/auth/google', { idToken }),
+  logout:         ()        => api.post('/v1/auth/logout'),
+  me:             ()        => api.get('/v1/auth/me'),
+};
+
 export default api;

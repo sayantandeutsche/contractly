@@ -25,6 +25,7 @@ SCRIPTS=(
   "07_rls_policies.sql"
   "08_audit_triggers.sql"
   "09_seed_data.sql"
+  "10_auth_columns.sql"
 )
 
 echo "=============================================="
