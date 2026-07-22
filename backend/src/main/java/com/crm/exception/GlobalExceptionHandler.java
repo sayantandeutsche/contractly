@@ -9,6 +9,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,Object>> notFound(ResourceNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error(404, ex.getMessage()));
     }
+    @ExceptionHandler(DuplicateEmailException.class)
+    public ResponseEntity<Map<String,Object>> duplicateEmail(DuplicateEmailException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error(409, ex.getMessage()));
+    }
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<Map<String,Object>> invalidCredentials(InvalidCredentialsException ex) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error(401, ex.getMessage()));
+    }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String,Object>> generic(Exception ex) {
         return ResponseEntity.status(500).body(error(500, "Internal server error: " + ex.getMessage()));

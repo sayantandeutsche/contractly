@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
   Users, Building2, UserCircle, TrendingUp,
-  FileText, LayoutDashboard, ChevronRight, Bell, Search, Settings, LogOut
+  FileText, Package, Bell, Search, Settings, LogOut
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import './AppShell.css';
 
 const NAV = [
@@ -12,13 +13,25 @@ const NAV = [
   { to: '/contacts',      icon: UserCircle,   label: 'Contacts'      },
   { to: '/opportunities', icon: TrendingUp,   label: 'Opportunities' },
   { to: '/contracts',     icon: FileText,     label: 'Contracts'     },
+  { to: '/products',      icon: Package,     label: 'Products'      },
 ];
 
 export default function AppShell() {
   const [expanded, setExpanded] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   const currentModule = NAV.find(n => location.pathname.startsWith(n.to))?.label || 'CRM';
+
+  const initials = user
+    ? `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase() || user.email[0].toUpperCase()
+    : '';
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login', { replace: true });
+  };
 
   return (
     <div className="app-shell">
@@ -49,7 +62,7 @@ export default function AppShell() {
             <Settings size={18} className="nav-icon" />
             {expanded && <span className="nav-label">Settings</span>}
           </button>
-          <button className="nav-item" title="Log out">
+          <button className="nav-item" title="Log out" onClick={handleLogout}>
             <LogOut size={18} className="nav-icon" />
             {expanded && <span className="nav-label">Log out</span>}
           </button>
@@ -71,7 +84,7 @@ export default function AppShell() {
           </div>
           <div className="topbar-right">
             <button className="icon-btn"><Bell size={16} /></button>
-            <div className="avatar">SA</div>
+            <div className="avatar" title={user?.email}>{initials}</div>
           </div>
         </header>
 

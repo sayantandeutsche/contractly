@@ -22,6 +22,11 @@ public class TenantInterceptor implements StatementInspector {
                 "SET LOCAL app.current_tenant_id = '" + tid + "'"
             ).executeUpdate();
         }
+        if (TenantContext.isBypass() && em != null) {
+            em.createNativeQuery(
+                "SET LOCAL app.bypass_tenant_check = 'on'"
+            ).executeUpdate();
+        }
         return sql;
     }
 }
